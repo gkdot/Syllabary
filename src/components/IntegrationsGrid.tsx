@@ -1,12 +1,12 @@
-import BlackboardIcon from '@/assets/integrations/blackboard.svg';
-import DriveIcon from '@/assets/integrations/drive.svg';
-import CalendarIcon from '@/assets/integrations/calendar.svg';
-import GmailIcon from '@/assets/integrations/gmail.svg';
-import OutlookIcon from '@/assets/integrations/outlook.svg';
-import TeamsIcon from '@/assets/integrations/teams.svg';
-import SlackIcon from '@/assets/integrations/slack.svg';
-import ZoomIcon from '@/assets/integrations/zoom.svg';
-import ShadowBadge from "@/components/ui/shadow-badge";
+import BlackboardIcon from '../assets/integrations/blackboard.svg';
+import DriveIcon from '../assets/integrations/drive.svg';
+import CalendarIcon from '../assets/integrations/calendar.svg';
+import GmailIcon from '../assets/integrations/gmail.svg';
+import OutlookIcon from '../assets/integrations/outlook.svg';
+import TeamsIcon from '../assets/integrations/teams.svg';
+import SlackIcon from '../assets/integrations/slack.svg';
+import ZoomIcon from '../assets/integrations/zoom.svg';
+import ShadowBadge from "../components/ui/shadow-badge";
 
 const apps = [
   { name: 'Blackboard', icon: BlackboardIcon },

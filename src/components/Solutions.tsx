@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "../components/ui/card";
 import { GraduationCap, Users, Building } from "lucide-react";
 import ShadowBadge from "./ui/shadow-badge";
 

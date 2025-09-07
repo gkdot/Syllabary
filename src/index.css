@@ -80,10 +80,6 @@ a {
   text-decoration: inherit;
 }
 
-a:hover {
-  color: #2b6cb0;
-}
-
 body {
   margin: 0;
   display: flex;

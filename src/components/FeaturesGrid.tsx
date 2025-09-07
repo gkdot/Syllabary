@@ -1,5 +1,5 @@
-import { Card, CardContent } from "@/components/ui/card";
-import ShadowBadge from "@/components/ui/shadow-badge";
+import { Card, CardContent } from "../components/ui/card";
+import ShadowBadge from "../components/ui/shadow-badge";
 import { Brain, Calendar, Upload, Clock } from "lucide-react";
 
 const features = [

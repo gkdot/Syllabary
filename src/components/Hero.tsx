@@ -1,10 +1,10 @@
 import FloatingCard from "./FloatingCard";
-import Button from "@/components/ui/button";
 import BlackboardIcon from '../assets/integrations/blackboard.svg';
 import CalendarIcon from '../assets/integrations/calendar.svg';
 import OutlookIcon from '../assets/integrations/outlook.svg';
 import { Check } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "../components/ui/badge";
+import Button from "../components/ui/button";
 
 export default function Hero() {
   return (

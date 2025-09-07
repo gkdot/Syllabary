@@ -1,23 +1,22 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import IntegrationsGrid from "./components/IntegrationsGrid";
-import FeaturesGrid from "./components/FeaturesGrid";
-import Footer from "./components/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landing";
+import ErrorPage from "./pages/Error";
+ import { ErrorBoundary } from "react-error-boundary";
 
 export default function App() {
   return (
-    <div className="bg-gray-50 min-h-screen min-w-screen text-gray-800">
-      <Navbar />
-      <main>
-        <Hero />
-        <section id="features">
-          <FeaturesGrid />
-        </section>
-        <section id="integrations">
-          <IntegrationsGrid />
-        </section>
-      </main>
-      <Footer />
-    </div>
+    <ErrorBoundary fallback={<ErrorPage />}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />}/>
+          
+          <Route path="/401" element={<ErrorPage status={401} />} />
+          <Route path="/403" element={<ErrorPage status={403} />} />
+          <Route path="/500" element={<ErrorPage status={500} />} />
+
+          <Route path="*" element={<ErrorPage status={404} />} />
+        </Routes>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
