@@ -1,0 +1,98 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    name: Lint › TypeCheck › Test › Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build (web)
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: |
+            build
+            dist
+  # Optional: create preview deploy (only for PRs from the same repo)
+  preview-deploy:
+    name: Preview Deploy (Vercel/Netlify — optional)
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: github.event_name == 'pull_request' && github.repository == github.event.pull_request.head.repo.full_name
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+      - name: Install dependencies
+        run: npm ci
+      # Example using Vercel CLI + token (ALTERNATIVE: use Vercel's GitHub App, which auto-previews)
+      - name: Install Vercel CLI
+        run: npm i -g vercel
+      - name: Vercel Preview
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          vercel --token $VERCEL_TOKEN --confirm --prod=false
+
+  deploy-functions:
+    name: Deploy Firebase Functions (main only)
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install firebase-tools
+        run: npm i -g firebase-tools
+
+      - name: Install functions deps & build (if TS)
+        run: |
+          cd functions
+          npm ci
+          npm run build || echo "no build script in functions"
+
+      - name: Authenticate & Deploy functions (using FIREBASE_TOKEN)
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_PROJECT_ID: ${{ secrets.VITE_FIREBASE_PROJECT_ID }}
+        run: |
+          # fast sanity check:
+          npx firebase --version
+          # deploy only functions
+          npx firebase deploy --only functions --project $FIREBASE_PROJECT_ID --token $FIREBASE_TOKEN
