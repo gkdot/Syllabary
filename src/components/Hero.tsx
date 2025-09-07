@@ -5,6 +5,7 @@ import OutlookIcon from '../assets/integrations/outlook.svg';
 import { Check } from "lucide-react";
 import { Badge } from "../components/ui/badge";
 import Button from "../components/ui/button";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -46,11 +47,12 @@ export default function Hero() {
               </h1>
 
               <p className="mt-6 max-w-2xl mx-auto text-gray-500">
-                Boost your productivity and streamline your workflow.
+                Upload your syllabi and manage your academic workload seamlessly.
               </p>
-
-              <div className="mt-10">
-                <Button variant="primary">Get started</Button>
+              <div  className="mt-10">
+                <Link to="/sign-in">
+                  <Button variant="primary">Get started</Button>
+                </Link>
               </div>
             </div>
 

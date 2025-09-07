@@ -1,7 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
 import Landing from "./pages/Landing";
 import ErrorPage from "./pages/Error";
- import { ErrorBoundary } from "react-error-boundary";
+import ProfilePage from "./pages/Profile";
+import SignInPage from "./pages/SignIn";
+import RequireAuth from "./components/RequireAuth";
 
 export default function App() {
   return (
@@ -9,6 +12,10 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />}/>
+          <Route path="/sign-in" element={<SignInPage />} />
+          <Route element={<RequireAuth />}>
+            <Route path="/profile" element={<ProfilePage />} />
+          </Route>
           
           <Route path="/401" element={<ErrorPage status={401} />} />
           <Route path="/403" element={<ErrorPage status={403} />} />

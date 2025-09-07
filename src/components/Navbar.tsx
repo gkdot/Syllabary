@@ -16,9 +16,9 @@ export default function Navbar() {
           <a href="#integrations">Integrations</a>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <Link to="/sign-in" className="flex items-center gap-3">
           <button className="text-sm">Sign in</button>
-        </div>
+        </Link>
       </div>
     </header>
   );

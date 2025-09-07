@@ -22,7 +22,7 @@ export function Button({
   return (
     <button
       {...props}
-      className={`inline-flex items-center justify-center px-6 py-6 rounded-full text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 
+      className={`inline-flex items-center justify-center px-6 py-6 rounded-full text-sm font-medium shadow-sm focus:outline-none
          ${bgClass} ${className}`.replace(/\s+/g, " ")}
     >
       {children}
