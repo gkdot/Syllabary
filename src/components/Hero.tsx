@@ -47,7 +47,7 @@ export default function Hero() {
               </h1>
 
               <p className="mt-6 max-w-2xl mx-auto text-gray-500">
-                Boost your productivity and streamline your workflow.
+                Upload your syllabi and manage your academic workload seamlessly.
               </p>
               <div  className="mt-10">
                 <Link to="/sign-in">

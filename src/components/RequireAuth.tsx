@@ -6,6 +6,6 @@ export default function RequireAuth() {
   const { user, loading } = useAuth();
 
   if (loading) return <Loading />;
-  if (!user) return <Navigate to="/sign-in" replace />;
+  if (!user) return <Navigate to="/" replace />;
   return <Outlet />; // allows nested routes to render
 }

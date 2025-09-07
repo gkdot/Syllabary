@@ -1,9 +1,5 @@
 import { useAuth } from "../context/AuthContext";
-import { LogOut } from "lucide-react";
-import { signOut } from "firebase/auth";
-import { auth } from "../firebase";
 import Loading from "./Loading";
-import { useNavigate } from "react-router-dom";
 import SignOutButton from "@/components/SignOutButton";
 
 export default function ProfilePage() {
@@ -22,13 +18,6 @@ export default function ProfilePage() {
       </div>
     );
   }
-
-  const navigate = useNavigate();
-
-  const handleSignOut = async () => {
-    await signOut(auth);
-    navigate("/", { replace: true }); // go to landing page
-  };
 
   return (
     <div className="min-h-screen min-w-screen bg-gray-50 py-12 px-6">
